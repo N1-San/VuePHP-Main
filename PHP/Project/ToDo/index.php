@@ -1,6 +1,5 @@
 <?php
-$insert = false;
-
+//connector variables
 $server = "localhost";
 $username = "root";
 $password = "";
@@ -8,12 +7,12 @@ $password = "";
 // add task
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $task = $_POST['task'];
-
+    //connection string
     $con = mysqli_connect($server, $username, $password, "todo");
-    if (!$con) {
+    if (!$con) {//connection checker
         die("connection to this database failed due to " . mysqli_connect_error());
     }
-
+    //sql insertion operation command
     $sql = "INSERT INTO `tasks` (`task`, `completed`, `created_at`) VALUES ('$task', 0, current_timestamp());";
     if ($con->query($sql) == true) {
         $insert = true;

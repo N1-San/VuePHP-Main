@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+    //sql update operation command
     $sql = "UPDATE tasks SET completed='$completed' WHERE id='$taskId'";
     if ($conn->query($sql) === TRUE) {
         // Success, do nothing

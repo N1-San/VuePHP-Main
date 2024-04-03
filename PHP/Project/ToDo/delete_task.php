@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
+    //sql deletion operation command
     $sql = "DELETE FROM tasks WHERE id='$taskId'";
     if ($conn->query($sql) === TRUE) {
         // Success, do nothing

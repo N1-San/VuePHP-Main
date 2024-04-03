@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const taskList = document.getElementById('task-list');
-    
+    //updation event listener    
     taskList.addEventListener('change', function(event) {
         if (event.target.type === 'checkbox') {
             const taskId = event.target.dataset.taskId;
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
-
+    //deletion event listener
     taskList.addEventListener('click', function(event) {
         if (event.target.classList.contains('del-btn')) {
             const taskId = event.target.dataset.taskId;

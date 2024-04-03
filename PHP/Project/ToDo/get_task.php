@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
         $taskId = $row['id'];
         $task = $row['task'];
         $completed = $row['completed'];
-        $class = $row['completed'] ? 'completed' : '';
+        $class = $row['completed'] ? 'completed' : ''; //checkbox status checker
         echo "<li class='$class'><input type='checkbox' class='task-checkbox' data-task-id='$taskId' " . ($completed ? 'checked' : '') . ">" . $task . "<button class='del-btn' data-task-id='$taskId'>Delete</button></li>";
     }
 } else {
