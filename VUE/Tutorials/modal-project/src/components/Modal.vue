@@ -1,14 +1,23 @@
 <template>
-    <div class="backdrop">
+    <div class="backdrop" @click.self="closeModal">
         <div class="modal" :class="{sale: theme === 'sale'}">
-            <h1>{{ header }}</h1>
-            <p>modal content</p>
+            <slot>default content</slot>
+            <div class="action">
+                <slot name="links"></slot>
+            </div>
+            <!-- <h1>{{ header }}</h1>
+            <p>{{ text }}</p> -->
         </div>
     </div>
 </template>
 <script>
 export default{
-    props: ['header','theme']
+    props: ['header','text','theme'],
+    methods:{
+        closeModal(){
+            this.$emit('close')
+        }
+    }
 }
 </script>
 <style scoped>
@@ -27,7 +36,22 @@ export default{
     height: 100%;
 }
 .modal h1{
-    color: rgb(113, 210, 255);
+    color: rgb(113, 255, 255);
+    border: none;
+    padding: 0;
+}
+.modal .actions {
+    text-align: center;
+    margin: 30px 0 10px 0;
+}
+.modal .actions a{
+    color: #333;
+    padding: 8xp;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 10px;
+
 }
 .modal.sale{
     background: rgb(255, 70, 70);
@@ -35,6 +59,12 @@ export default{
 }
 .modal.dark{
     background: grey;
+    color: white;
+}
+.modal.sale .actions{
+    color: white;
+}
+.modal.sale .actions a{
     color: white;
 }
 </style>
