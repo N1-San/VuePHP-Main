@@ -1,10 +1,7 @@
 <template>
   <div>
-    <input
-      type="checkbox"
-      :checked="task.completed"
-      @change="toggleComplete(task.id, task.completed)"
-    />
+    <!-- <input type="checkbox" :checked="task.completed" @change="toggleComplete(task.id, task.completed)" /> -->
+    <input type="checkbox" v-model="completed" @change="toggleTask" />
     <span>{{ task.task }}</span>
     <button @click="deleteTask(task.id)">Delete</button>
   </div>
