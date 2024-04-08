@@ -8,7 +8,7 @@ include 'config.php';
 // Add task
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $task = $_POST['task'];
-
+  echo $task;
   $sql = "INSERT INTO tasks (task, completed, created_at) VALUES ('$task', 0, NOW())";
 
   if ($conn->query($sql) === TRUE) {
