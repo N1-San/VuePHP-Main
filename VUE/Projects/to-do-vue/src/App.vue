@@ -38,8 +38,9 @@ export default {
     },
     addTask(task){
       console.log('Received task:', task); // Debugging
-      axios.post(`http://localhost/back/index.php`,{task})
+      axios.post(`http://localhost/back/index.php`,task)
       .then(() => {
+        console.log('successfull response');
         this.getTasks();
       })
       .catch(error => {
@@ -57,7 +58,8 @@ export default {
         });
     },
     toggleComplete(id, completed) {
-      axios.put(`http://localhost/back/index.php?id=${id}`, { completed: !completed })
+      console.log('app toggle triggered',completed)
+      axios.post(`http://localhost/back/index.php?id=${id}`, { completed: !completed })
         .then(() => {
           this.getTasks();
         })

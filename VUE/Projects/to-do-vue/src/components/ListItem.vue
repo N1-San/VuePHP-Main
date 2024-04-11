@@ -9,12 +9,17 @@
 <script>
 export default{
     props: ['task'],
+    data(){
+      return{
+        completed: Boolean,
+      }
+    },
     methods: {
         deleteTask(id){
             console.log('Task Deleted:', id); // Debugging
             this.$emit('delete-task', id);
         },
-        toggleComplete(id, completed){
+        toggleTask(id, completed){
             console.log('Task toggled:', id);
             this.$emit('toggle-complete',id,!completed);
         }
