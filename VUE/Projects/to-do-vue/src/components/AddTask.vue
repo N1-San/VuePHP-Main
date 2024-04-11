@@ -16,7 +16,8 @@ export default {
         addTask() {
             if (this.task.trim() !== '') {
                 console.log('Adding task:', this.task);
-                this.$emit('add-task', this.task);
+                const task = {'task': this.task};
+                this.$emit('add-task', task);
                 this.task = '';
             }else{
                 console.error('task cannot be empty')
