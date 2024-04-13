@@ -2,17 +2,19 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Content-Type: application/json');
 
 include 'config.php';
 
 // Add task
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $_POST = json_decode(file_get_contents("php://input"),true);
   $task = $_POST['task'];
-  echo $task;
-  $sql = "INSERT INTO tasks (task, completed, created_at) VALUES ('$task', 0, NOW())";
-
-  if ($conn->query($sql) === TRUE) {
+  $sql = "INSERT INTO `tasks` (`task`, `completed`, `created_at`) VALUES ('$task', 0, current_timestamp())";
+  
+  if ($conn->query($sql) == true) {
     echo "New record created successfully";
+    
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
@@ -40,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
 
   $sql = "DELETE FROM tasks WHERE id=$id";
 
-  if ($conn->query($sql) === TRUE) {
+  if ($conn->query($sql) === True) {
     echo "Record deleted successfully";
   } else {
     echo "Error deleting record: " . $conn->error;
@@ -49,13 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
 
 // Toggle task completion
 if ($_SERVER["REQUEST_METHOD"] == "PUT") {
-  parse_str(file_get_contents("php://input"), $_PUT);
+  // parse_str(file_get_contents("php://input"), $_PUT);
   $id = $_PUT['id'];
   $completed = $_PUT['completed'];
 
   $sql = "UPDATE tasks SET completed=$completed WHERE id=$id";
 
-  if ($conn->query($sql) === TRUE) {
+  if ($conn->query($sql) === True) {
     echo "Record updated successfully";
   } else {
     echo "Error updating record: " . $conn->error;
