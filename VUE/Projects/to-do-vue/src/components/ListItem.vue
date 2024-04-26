@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <input type="checkbox" :checked="task.completed" @change="toggleComplete(task.id, task.completed)" /> -->
-    <input type="checkbox" v-model="completed" @change="toggleTask" />
+    <input type="checkbox" v-model="completed" :checked="task.completed" @change="toggleComplete(task.id, task.completed)" />
+    <!-- <input type="checkbox" v-model="completed" @change="toggleTask" /> -->
     <span>{{ task.task }}</span>
     <button @click="deleteTask(task.id)">Delete</button>
   </div>
@@ -19,9 +19,10 @@ export default{
             console.log('Task Deleted:', id); // Debugging
             this.$emit('delete-task', id);
         },
-        toggleTask(id, completed){
-            console.log('Task toggled:', id);
-            this.$emit('toggle-complete',id,!completed);
+        toggleComplete(id,completed){
+          console.log(this.completed)
+            console.log('Task toggled:', id,this.completed);
+            this.$emit('toggle-complete',id,this.completed);
         }
     }
 };
